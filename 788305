@@ -1,1901 +1,0 @@
-<?php
-//=================//
-$sudo = 651611422;
-$userbot = "swachat";
-//=================//
-ob_start();
-$token = '1001236512:AAEbVCbKYpT9-fejpUm3y0ZR5pQn3R0ktsQ';
-define('API_KEY',$token);
-//=================//
-echo file_get_contents("https://api.telegram.org/bot" . API_KEY . "/setwebhook?url=" . $_SERVER['SERVER_NAME'] . "" . $_SERVER['SCRIPT_NAME']);
-function bot($method,$datas=[]){
-    $Alsh = http_build_query($datas);
-        $url = "https://api.telegram.org/bot".API_KEY."/".$method."?$Alsh";
-        $Alsh = file_get_contents($url);
-        return json_decode($Alsh); }
-
-
-//==================//
-$update = json_decode(file_get_contents('php://input'));
-$message = $update->message;
-$namee = $message->from->first_name;
-$chat_id = $message->chat->id;
-$text = $message->text;
-$sudo = 651611422;
-$userbot = "swachat";
-$message_id = $message->message_id;
-if(isset($update->callback_query)){
-$chat_id = $update->callback_query->message->chat->id;
-$message_id = $update->callback_query->message->message_id;
-$data = $update->callback_query->data;
-$namee = $update->callback_query->from->first_name;
-}
-$token = $yfeee;
-$getmember= explode("\n",$member);
-$member = file_get_contents('members.txt');
-$lockjoin = file_get_contents('lockjoin.txt');
-$start = file_get_contents('start.txt');
-$set = file_get_contents("set.txt");
-$msgidtxt = file_get_contents("msgids.txt");
-$idtxt = file_get_contents("$id/$id.txt");
-$rules = file_get_contents("rules.txt");
-$rule = file_get_contents("rule.txt");
-$channels = file_get_contents("channels.txt");
-$channel = file_get_contents("channel.txt");
-$set = file_get_contents("set.txt");
-$msgsend = file_get_contents("sends.txt");
-$sales = json_decode(file_get_contents('sales.json'),true);
-$buttons = json_decode(file_get_contents('button.json'),true);
-$getmember = explode("\n",$member);
-$from_id = $message->from->id;
-$rdod = json_decode(file_get_contents("rdod.json"),true);
-$replyy = $message->reply_to_message->forward_from->id;
-$nameee = $message->from->first_name;
-$username = $message->from->username;
-$nameeee = $update->callback_query->from->first_name;
-$usernamee = $update->callback_query->from->username;
-$setcoin = file_get_contents("setcoin.txt");
-$getmes_id = explode("\n", file_get_contents("$message_id.txt"));
-//==================//
-function save($array){
-file_put_contents('button.json', json_encode($array));
-}
-//==================//
-if($chat_id == $sudo){
-if($text == "/start"){
-bot('sendMessage', [
-'chat_id'=>$chat_id,
-'text'=>"
-◾ اهلا مطوري الغالي !! 😻
-◾ تستطيع التحكم بي عبر الازرار في الاسفل 🙂
-",
-'reply_markup'=>json_encode([ 
-'inline_keyboard'=>[
-[['text'=>"اضف رقم",'callback_data'=>"addnumber"],['text'=>"حذف رقم",'callback_data'=>"delnumber"]],
-[['text'=>"النقود للكل",'callback_data'=>"coinforall"],['text'=>"تبديل الكود",'callback_data'=>"setcode"]],
-[['text'=>"العروض الموجودة",'callback_data'=>"allnumbers"]],
-[['text'=>"وضع قوانين",'callback_data'=>"setrule"],['text'=>"",'callback_data'=>"addcoin"]],
-[['text'=>"نسخة احتياطية",'callback_data'=>"backup"],['text'=>"",'callback_data'=>"delbans"]],
-[['text'=>"المشتركين",'callback_data'=>"members"],['text'=>"اذاعة نشر",'callback_data'=>"send"]],
-[['text'=>"تحديد النقود الدعوة",'callback_data'=>"setcoin"],['text'=>"",'callback_data'=>"delbans"]],
-[['text'=>"",'callback_data'=>"delnumbers"],['text'=>"تعيين الستارت",'callback_data'=>"setstart"]],
-[['text'=>"تعطيل اختصار الروابط",'callback_data'=>"unactivity"],['text'=>"تفعيل 👈",'callback_data'=>"activity"]],
-[['text'=>"تمويل قناة",'callback_data'=>"addchannel"],['text'=>"حذف تمويل قناة",'callback_data'=>"delchannel"]],
-[['text'=>"تمويل قناة 2",'callback_data'=>"addchannel2"],['text'=>"حذف تمويل قناة 2",'callback_data'=>"delchannel2"]],
-]
-])
-]);
-  $sales['mode'] = null;
-  file_put_contents("sales.json",json_encode($sales));
- }
-if($text == "/all"){
-  bot('sendmessage',[
-   'chat_id'=>$chat_id,
-   'text'=>"
-▪ تم بنجاح 😺👍",
-]);
-for($i=0;$i < count($getmember); $i++){
-$sales[$getmember[$i]]['steps'] = "no";
-file_put_contents("sales.json",json_encode($sales));
- }
-}
-if($text == "ارسال"){
-  bot('sendmessage',[
-   'chat_id'=>$chat_id,
-   'text'=>"
-ارسل ايدي الشخص المراد ارسال نقاط له .
-",
-]);
-  $buttons['mode'] = 'chatt';
-  save($buttons);
-  exit;
-  }
-if($chat_id == $sudo){
-   if($text != '/start' and $text != null and $buttons['mode'] == 'chatt'){
-  bot('sendMessage',[
-   'chat_id'=>$chat_id,
- 'text'=> "الان ارسل عدد النقاط التي تريد خصم .",
- ]);
-   $buttons['mode'] = 'poii';
-   $buttons['idd'] = $text;
-  save($buttons);
-  exit;
-}
-}
-if($chat_id == $sudo){
- if($text != '/start' and $text != null and $buttons['mode'] == 'poii'){
-  bot('sendMessage',[
-   'chat_id'=>$chat_id,
- 'text'=>"◾ تم خصم $text نقطة الى ".$buttons['idd']." بنجاح ",
-]);
-  bot('sendmessage',[
-   'chat_id'=>$buttons['idd'],
-  'text'=>"تم خصم $text نقطة من المطور ",
-  ]);
-  $buttons['mode'] = null;
-  $sales[$buttons['idd']]['collect'] -= $text;
-  $buttons['idd'] = null;
-  save($buttons);
-file_put_contents("sales.json",json_encode($sales));
-  exit;
-}
-}
-if($chat_id == $sudo){
-if($text == "/add"){
-  bot('sendmessage',[
-   'chat_id'=>$chat_id,
-   'text'=>"
-ارسل ايدي الشخص المراد ارسال نقاط له .
-",
-]);
-  $buttons['mode'] = 'chhat';
-  save($buttons);
-  exit;
-  }
-}
-if($chat_id == $sudo){
-   if($text != '/start' and $text != null and $buttons['mode'] == 'chhat'){
-  bot('sendMessage',[
-   'chat_id'=>$chat_id,
- 'text'=> "الان ارسل عدد النقاط التي تريد ارسالها .",
- ]);
-   $buttons['mode'] = 'poi';
-   $buttons['idd'] = $text;
-  save($buttons);
-  exit;
-}
-}
-if($chat_id == $sudo){
- if($text != '/start' and $text != null and $buttons['mode'] == 'poi'){
-  bot('sendMessage',[
-   'chat_id'=>$chat_id,
- 'text'=>"◾ تم ارسال $text نقطة الى ".$buttons['idd']." بنجاح ",
-]);
-  bot('sendmessage',[
-   'chat_id'=>$buttons['idd'],
-  'text'=>"تم اعطائك $text نقطة من المطور ",
-  ]);
-  $buttons['mode'] = null;
-  $sales[$buttons['idd']]['collect'] += $text;
-  $buttons['idd'] = null;
-  save($buttons);
-file_put_contents("sales.json",json_encode($sales));
-  exit;
-}
-}
-if($data == "activity"){
-bot('EditMessageText',[
-'chat_id'=>$chat_id,
-'message_id'=>$message_id,
-'text'=>"▪ تم تفعيل اختصار الروابط 👍",
-]);
-$buttons['activity'] = "YES";
-save($buttons);
-}
-if($data == "unactivity"){
-bot('EditMessageText',[
-'chat_id'=>$chat_id,
-'message_id'=>$message_id,
-'text'=>"▪ تم تعطيل اختصار الروابط 👍",
-]);
-$buttons['activity'] = "NO";
-save($buttons);
-}
-if($data == "setcode"){
-$code = rand(1000000, 9999999);
-$codee = rand(100000, 999999);
-$codeee = rand(10000, 99999);
-$codeeee = rand(1000, 9999);
-$codeeeee = rand(100, 999);
-bot('EditMessageText',[
-'chat_id'=>$chat_id,
-'message_id'=>$message_id,
-'text'=>"▪ عدد زوار جميع الروابط : ".$sales['clicker']."
-▪ الاكواد الجديدة :
-$code | $codee | $codeee | $codeeee | $codeeeee
-▪ تم وضع روابط جديدة 😎",
-]);
-$buttons['code1'] = $code;
-$buttons['code2'] = $codee;
-$buttons['code3'] = $codeee;
-$buttons['code4'] = $codeeee;
-$buttons['code5'] = $codeeeee;
-save($buttons);
-$sales['clicker'] = 1;
-file_put_contents("sales.json",json_encode($sales));
-for($i=0;$i < count($getmember); $i++){
-$sales[$getmember[$i]]['short'] = "no";
-$sales[$getmember[$i]]['short2'] = "no";
-$sales[$getmember[$i]]['short3'] = "no";
-$sales[$getmember[$i]]['short4'] = "no";
-$sales[$getmember[$i]]['short5'] = "no";
-file_put_contents("sales.json",json_encode($sales));
- }
-}
- if($data == "delchannel"){
-bot('EditMessageText',[
-'chat_id'=>$chat_id,
-'message_id'=>$message_id,
-'text'=>"
-🙂 تم حذف قناة التمويل بنجاح
-",
-]);
-unlink("channels.txt");
-$buttons['mode'] = null;
-save($buttons);
-exit;
- }
- if($data == "delchannel2"){
-bot('EditMessageText',[
-'chat_id'=>$chat_id,
-'message_id'=>$message_id,
-'text'=>"
-🙂 تم حذف قناة التمويل بنجاح
-",
-]);
-unlink("channel.txt");
-$buttons['mode'] = null;
-save($buttons);
-exit;
- }
-if($data == "addchannel"){
-bot('EditMessageText',[
-'chat_id'=>$chat_id,
-'message_id'=>$message_id,
-'text'=>"
-▪ ارسل معرف القناة لتمويلها 🔰
-▪ تأكد من البوت مشرفا فيها 🙂 لكي يتم التحقق من اشتراك العضو فيها 🙂
-",
-]);
-$buttons['mode'] = 'chs';
-save($buttons);
-exit;
- }
- if($text != '/start' and $text != null and $buttons['mode'] == 'chs'){
-  bot('sendMessage',[
-   'chat_id'=>$chat_id,
-   'text'=>'تم الحفظ ✅. 
-',
-]);
-file_put_contents("channels.txt",$text);
-$buttons['mode'] = null;
-  save($buttons);
-  exit;
- }
-if($data == "addchannel2"){
-bot('EditMessageText',[
-'chat_id'=>$chat_id,
-'message_id'=>$message_id,
-'text'=>"
-▪ ارسل معرف القناة لتمويلها 🔰
-▪ تأكد من البوت مشرفا فيها 🙂 لكي يتم التحقق من اشتراك العضو فيها 🙂
-",
-]);
-$buttons['mode'] = 'ccchs';
-save($buttons);
-exit;
- }
- if($text != '/start' and $text != null and $buttons['mode'] == 'ccchs'){
-  bot('sendMessage',[
-   'chat_id'=>$chat_id,
-   'text'=>'تم الحفظ ✅. 
-',
-]);
-file_put_contents("channel.txt",$text);
-$buttons['mode'] = null;
-  save($buttons);
-  exit;
- }
-if($data == "setstart"){
-bot('EditMessageText',[
-'chat_id'=>$chat_id,
-'message_id'=>$message_id,
-'text'=>"
-▪ ارسل رسالة الضهور عند دخول شخص الى البوت :
-",
-]);
-$buttons['mode'] = 'str';
-save($buttons);
-exit;
- }
- if($text != '/start' and $text != null and $buttons['mode'] == 'str'){
-  bot('sendMessage',[
-   'chat_id'=>$chat_id,
-   'text'=>'تم الحفظ ✅. 
-',
-]);
-file_put_contents("start.txt",$text);
-  $buttons['mode'] = null;
-  save($buttons);
-  exit;
- }
-if($data == "setcoin"){
-bot('EditMessageText',[
-'chat_id'=>$chat_id,
-'message_id'=>$message_id,
-'text'=>"
-▪ ارسل عدد النقاط التي تريد ان يكسبها العضو عند دعوة عضو اخر 🔰
-(ارقام فقط)
-",
-]);
-$buttons['mode'] = 'coc';
-save($buttons);
-exit;
-}
- if($text != '/start' and $text != null and $buttons['mode'] == 'coc'){
-  bot('sendMessage',[
-   'chat_id'=>$chat_id,
-   'text'=>'تم الحفظ ✅. 
-',
-]);
-file_put_contents("setcoin.txt","$text");
-$buttons['mode'] = null;
-save($buttons);
-exit;
-}
-if($data == "send"){
-file_put_contents("set.txt","send");
-bot('EditMessageText',[
-'chat_id'=>$chat_id,
-'message_id'=>$message_id,
-'text'=>"
-◾ اهلا بك في قسم تغيير الاذاعة .
-◾ تستطيع نشر رسائل للمشتركين الان .
-◾ قم بارسال رسالتك ثم حدد نوع النشر .
-
-◾ ارسل رسالتك الان .
-",
-'reply_to_message_id'=>$message->message_id,
-]);
-}
-if($text and $set == "send"){
-bot('sendMessage',[
-'chat_id'=>$chat_id,
-'text'=>"
-◻ تم حفظ رسالتك :
-*$text*
-
-◾ اختر طريقة النشر الان .
-",
-'parse_mode'=>"MarkDown",
-'reply_to_message_id'=>$message->message_id,
-'reply_markup'=>json_encode([ 
-'inline_keyboard'=>[
-[['text'=>"- نشر عادي 💬",'callback_data'=>"sendmsg"],['text'=>"- ارسال ماركدون 🗯",'callback_data'=>"sendmark"]],
-[['text'=>"- ارسال هتمل 🔃",'callback_data'=>"sendhtml"],['text'=>"- ارسال لشخص محدد 🔘",'callback_data'=>"sendone"]],
-[['text'=>"",'callback_data'=>"formsg"],['text'=>"- ارسال لاشخاص محددين 💭",'callback_data'=>"sendsome"]],
-[['text'=>"- اوامر النشر بتوجيه 🗳",'callback_data'=>"orderfor"]],
-]
-])
-]);
-file_put_contents("set.txt","null");
-file_put_contents("sends.txt",$text);
-}
-if($data == "sendmsg"){
-bot('EditMessageText',[
-'chat_id'=>$chat_id,
-'message_id'=>$message_id,
-'text'=>"
-$msgsend 
-
-$text
-◾ جاري نشر الرسالة ... 💬",
-]);
-for($i=0;$i < count($getmember); $i++){
-bot('sendMessage',[
-'chat_id'=>$getmember[$i],
-'text'=>$msgsend,
-]);
-file_put_contents("sends.txt","");
-}
-$count = count($getmember)-1;
-bot('sendMessage',[
-'chat_id'=>$chat_id,
-'text'=>"
-- تم نشر الرسالة الى {$count} مشترك 🔰
-",
-]);
-}
-//=====
-if($data == "orderfor"){
-bot('EditMessageText',[
-'chat_id'=>$chat_id,
-'message_id'=>$message_id,
-'text'=>"
-◾ حسنا !! اختر نوع التوجيه .
-",
-'parse_mode'=>"MarkDown",
-'reply_to_message_id'=>$message->message_id,
-'reply_markup'=>json_encode([ 
-'inline_keyboard'=>[
-[['text'=>"نشر توجيه 🔁",'callback_data'=>"formsg"],['text'=>"- ارسال لاشخاص محددين 💭",'callback_data'=>"sendsome"]],
-[['text'=>"- توجيه لشخص محدد 👤",'callback_data'=>"forone"]],
-[['text'=>"- توجية لعدة اشخاص 👥",'callback_data'=>"forsome"]],
-]
-])
-]);
-}
-if($data == "formsg"){
-bot('EditMessageText',[
-'chat_id'=>$chat_id,
-'message_id'=>$message_id,
-'text'=>"
-◾ ارسل الرسالة الان .",
-]);
-file_put_contents("set.txt","sendl");
-}
-if($text and $set == "sendl"){
-for($i=0;$i < count($getmember); $i++){
-bot('ForwardMessage',[
-	'chat_id'=>$getmember[$i],
-	'from_chat_id'=>$chat_id,
-	'message_id'=>$message->message_id,
-]);
-file_put_contents("set.txt","");
-}
-$count = count($getmember)-1;
-bot('sendMessage',[
-'chat_id'=>$chat_id,
-'text'=>"
-- تم توجيه الرسالة الى {$count} مشترك 🔰
-",
-]);
-}
-//=====
-if($data == "sendmark"){
-bot('EditMessageText',[
-'chat_id'=>$chat_id,
-'message_id'=>$message_id,
-'text'=>"
-◾ جاري نشر الرسالة ... 💬",
-]);
-for($i=0;$i<count($getmember);$i++){
-bot('sendMessage',[
-'chat_id'=>$getmember[$i],
-'text'=>$msgsend,
-'parse_mode'=>"markdown",
-'disable_web_page_preview'=>true,
-]);
-file_put_contents("sends.txt","");
-}
-$count = count($getmember)-1;
-bot('sendMessage',[
-'chat_id'=>$chat_id,
-'text'=>"
-- تم نشر الرسالة الى {$count} مشترك 🔰
-
-(ماركداون)
-",
-]);
-}
-if($data == "sendhtml"){
-bot('EditMessageText',[
-'chat_id'=>$chat_id,
-'message_id'=>$message_id,
-'text'=>"
-◾ جاري نشر الرسالة ... 💬",
-]);
-for($i=0;$i<count($getmember);$i++){
-bot('sendMessage',[
-'chat_id'=>$getmember[$i],
-'text'=>$msgsend,
-'parse_mode'=>"HTML",
-]);
-file_put_contents("sends.txt","");
-}
-$count = count($getmember)-1;
-bot('sendMessage',[
-'chat_id'=>$chat_id,
-'text'=>"
-- تم نشر الرسالة الى {$count} مشترك 🔰
-
-(هتمل)
-",
-]);
-}
-if($data == "sendone"){
-bot('EditMessageText',[
-'chat_id'=>$chat_id,
-'message_id'=>$message_id,
-'text'=>"
-◾ ارسل الان ايدي الشخص المراد الارسال له .
-",
-]);
-file_put_contents("set.txt","xxx");
-}
-if($text and $set == "xxx"){
-bot('sendMessage',[
-'chat_id'=>$text,
-'text'=>$msgsend,
-'parse_mode'=>"markdown",
-'disable_web_page_preview'=>true,
-    ]);
-file_put_contents("set.txt","null");
-file_put_contents("sends.txt","");
-  }
-$count = count($getmember)-1;
-if($data == "sendsome"){
-bot('EditMessageText',[
-'chat_id'=>$chat_id,
-'message_id'=>$message_id,
-'text'=>"
-◾ ارسل الان رقم محدد من حساب عدد المشتركين .
-
-*عدد المشتركين* :- $count
-
-◾ مثلا 20 ✅
-◾ بعد ذلك سيتم ارسال رسالتك لـ 20 شخص من بين $count شخص 🔰
-",
-]);
-file_put_contents("set.txt","nnn");
-$allcount = $count - $text;
-}
-$countt = count($getmember)-$allcount;
-if($text and $set == "nnn"){
-for($i=0;$i<count($countt);$i++){
-bot('sendMessage',[
-'chat_id'=>$countt[$i],
-'text'=>$msgsend,
-'parse_mode'=>"markdown",
-'disable_web_page_preview'=>true,
-    ]);
-file_put_contents("set.txt","null");
-file_put_contents("sends.txt","");
-  }
-bot('sendMessage',[
-'chat_id'=>$chat_id,
-'text'=>"
-◾ تم ارسال رسالتك لـ $count[$i] شخص بنجاح ✅ .
-",
-    ]);
-  }
-//=======================
-if($data == "sendone"){
-bot('EditMessageText',[
-'chat_id'=>$chat_id,
-'message_id'=>$message_id,
-'text'=>"
-◾ ارسل الان ايدي الشخص المراد الارسال له .
-",
-]);
-file_put_contents("set.txt","xxx");
-}
-if($text and $set == "xxx"){
-bot('sendMessage',[
-'chat_id'=>$text,
-'text'=>$msgsend,
-'parse_mode'=>"markdown",
-'disable_web_page_preview'=>true,
-    ]);
-file_put_contents("set.txt","null");
-file_put_contents("sends.txt","");
-  }
-$count = count($getmember)-1;
-if($data == "sendsome"){
-bot('EditMessageText',[
-'chat_id'=>$chat_id,
-'message_id'=>$message_id,
-'text'=>"
-◾ ارسل الان رقم محدد من حساب عدد المشتركين .
-
-*عدد المشتركين* :- $count
-
-◾ مثلا 20 ✅
-◾ بعد ذلك سيتم ارسال رسالتك لـ 20 شخص من بين $count شخص 🔰
-",
-]);
-file_put_contents("set.txt","nnn");
-$allcount = $count - $text;
-}
-$countt = count($getmember)-$allcount;
-if($text and $set == "nnn"){
-for($i=0;$i<count($countt);$i++){
-bot('sendMessage',[
-'chat_id'=>$countt[$i],
-'text'=>$msgsend,
-'parse_mode'=>"markdown",
-'disable_web_page_preview'=>true,
-    ]);
-file_put_contents("set.txt","null");
-file_put_contents("sends.txt","");
-  }
-bot('sendMessage',[
-'chat_id'=>$chat_id,
-'text'=>"
-◾ تم ارسال رسالتك لـ $countt شخص بنجاح ✅ .
-",
-    ]);
-  }
-//===============
-if($data == "forone"){
-bot('EditMessageText',[
-'chat_id'=>$chat_id,
-'message_id'=>$message_id,
-'text'=>"
-◾ ارسل الان ايدي الشخص المراد التوجيه له .
-",
-]);
-file_put_contents("set.txt","forw");
-}
-if($text and $set == "forw"){
-bot('sendMessage',[
-'chat_id'=>$chat_id,
-'text'=>"
-◾ ارسل الرسالة الان .
-",
-]);
-file_put_contents("set.txt","foronee");
-file_put_contents("sends.txt",$text);
-}
-if($text and $set == "foronee"){
-    bot('forwardMessage',[
-        'chat_id'=>$msgsend,
-        'from_chat_id'=>$chat_id,
-        'message_id'=>$message->message_id,
-    ]);
-file_put_contents("set.txt","null");
-file_put_contents("sends.txt","");
-bot('sendMessage',[
-'chat_id'=>$chat_id,
-'text'=>"
-◾ تم ارسال رسالتك للشخص بنجاح .",
-]);
-  }
-$count = count($getmember)-1;
-if($data == "forsome"){
-bot('EditMessageText',[
-'chat_id'=>$chat_id,
-'message_id'=>$message_id,
-'text'=>"
-◾ ارسل الان رقم محدد من حساب عدد المشتركين .
-
-*عدد المشتركين* :- $count
-
-◾ مثلا 20 ✅
-◾ بعد ذلك سيتم توجيه رسالتك لـ 20 شخص من بين $count شخص 🔰
-",
-]);
-file_put_contents("set.txt","nnnn");
-}
-$count = count($getmember);
-if($text and $set == "nnnn"){
-$allcount = $count - $text;
-bot('sendMessage',[
-'chat_id'=>$chat_id,
-'text'=>"
-◾ ارسل رسالتك الان .
-
-◾ سيتم ارسالها لـ $text ولن يتم ارسالها لـ $allcount
-",
-]);
-file_put_contents("set.txt","sendfor");
-file_put_contents("sends.txt","$allcount");
-}
-if($text and $set == "sendfor"){
-$countt = count($getmember)-$msgsends;
-for($i=0;$i<count($countt);$i++){
-    bot('forwardMessage',[
-        'chat_id'=>$countt[$i],
-        'from_chat_id'=>$chat_id,
-        'message_id'=>$message->message_id,
-    ]);
-file_put_contents("set.txt","null");
-file_put_contents("sends.txt","");
-  }
-bot('sendMessage',[
-'chat_id'=>$chat_id,
-'text'=>"
-◾ تم التوجيه لـ $countt شخص بنجاح ✅ .
-",
-    ]);
-  }
-$count = count($getmember)-1;
-if($data == "members"){
- bot('answercallbackquery',[
-      'callback_query_id' => $update->callback_query->id,
-      'text'=>"$count مشترك 🔰",
-      'show_alert'=>true,
-   ]);}
-if($data == "backup"){
-$user = (file_get_contents("sales.json"));
-file_put_contents("backup.json",$user);
-$usser = (file_get_contents("button.json"));
-file_put_contents("backup1.json",$usser);
-bot('EditMessageText',[
-'chat_id'=>$chat_id,
-'message_id'=>$message_id,
-'text'=>"
-▪ تم عمل نسخة احتياطية بنجاح 
-
-▪ اذا حدث وانحذفت النقاط اذهب لـ @xlxlq واطلب منه رفع النسخة 🔰
-
-▪ تذكر عمل هذه النسخة مرتين يوميا 🔰
-",
-]);
-}
-if($data == "setrule"){
-bot('EditMessageText',[
-'chat_id'=>$chat_id,
-'message_id'=>$message_id,
-'text'=>"
-▪ الان ارسل رسالة القوانين الجديدة ❤🙂
-",
-]);
-$buttons['mode'] = 'rule';
-save($buttons);
-exit;
- }
- if($text != '/start' and $text != null and $buttons['mode'] == 'rule'){
-  bot('sendMessage',[
-   'chat_id'=>$chat_id,
-   'text'=>'تم الحفظ ✅. 
-✅ تم وضع رسالة القوانين بنجاح 💙',
-]);
-file_put_contents("rule.txt",$text);
-$buttons['mode'] = null;
-  save($buttons);
-  exit;
-}
-if($data == "coinforall"){
-bot('EditMessageText',[
-'chat_id'=>$chat_id,
-'message_id'=>$message_id,
-'text'=>"
-▪ ارسل الان عدد النقاط المراد ارسالها لـ $count مشترك ✅
-",
-]);
-$buttons['mode'] = 'aadd';
-save($buttons);
-exit;
- }
- if($text != '/start' and $text != null and $buttons['mode'] == 'aadd'){
-  bot('sendMessage',[
-   'chat_id'=>$chat_id,
-   'text'=>'تم الحفظ ✅. 
-▪ تم ارسال $text بنجاح لـ $count مشترك 🙂',
-]);
-for($i=0;$i<count($getmember);$i++){
-bot('sendMessage',[
-'chat_id'=>$getmember[$i],
-'text'=>"
-▪ تم اعطائك $text ماركوس من المطور 🙂💵
-",
-]);
-$sales[$getmember[$i]]['collect'] += $text;
-file_put_contents("sales.json",json_encode($sales));
-}
-$buttons['mode'] = null;
-save($buttons);
-exit;
-}
-if($data == "delallcoin"){
-bot('EditMessageText',[
-'chat_id'=>$chat_id,
-'message_id'=>$message_id,
-'text'=>"
-▪ ارسل الان عدد النقاط المراد خصمها من $count مشترك ✅
-",
-]);
-$buttons['mode'] = 'aaadd';
-save($buttons);
-exit;
- }
- if($text != '/start' and $text != null and $buttons['mode'] == 'aaadd'){
-  bot('sendMessage',[
-   'chat_id'=>$chat_id,
-   'text'=>'تم الحفظ ✅. 
-▪ تم خصم $text بنجاح لـ $count مشترك 🙂',
-]);
-for($i=0;$i<count($getmember);$i++){
-bot('sendMessage',[
-'chat_id'=>$getmember[$i],
-'text'=>"
-▪ تم اعطائك $text ماركوس من المطور 🙂💵
-",
-]);
-$sales[$getmember[$i]]['collect'] -= $text;
-file_put_contents("sales.json",json_encode($sales));
-}
-$buttons['mode'] = null;
-save($buttons);
-exit;
-}
-
-//==================//
- if($data == 'addnumber'){
-  bot('editMessageText',[
-    'chat_id'=>$chat_id,
-    'message_id'=>$message_id,
-    'text'=>"
-▪ ارسل اسم الرقم لإضافته .
-",
-    'reply_markup'=>json_encode([
-     'inline_keyboard'=>[
-      [['text'=>'- الغاء 🚫!','callback_data'=>'c']]
-      ]
-    ])
-  ]);
-  $buttons['mode'] = 'add';
-  save($buttons);
-  exit;
- }
- if($text != '/start' and $text != null and $buttons['mode'] == 'add'){
-  bot('sendMessage',[
-   'chat_id'=>$chat_id,
-   'text'=>'تم الحفظ ✅. 
-▪ ارسل عدد النقود الان (ارقام فقط)',
-  ]);
-  $buttons['n'] = $text;
-  $buttons['mode'] = 'addm';
-  save($buttons);
-  exit;
- }
- if($text != '/start' and $text != null and $buttons['mode'] == 'addm'){
-  $code = rand(100000, 999999);
-  bot('sendMessage',[
-   'chat_id'=>$chat_id,
-   'text'=>'تم الحفظ السلعة ✅. 
-   ℹ️┇الاسم : '.$buttons['n'].'
-💵┇السعر : '.$text.'
-⛓┇كود السلعة : '.$code
-  ]);
-  $buttons['sales'][$code]['name'] = $buttons['n'];
-  $buttons['sales'][$code]['price'] = $text;
-  $buttons['n'] = null;
-  $buttons['mode'] = null;
-  save($buttons);
-  exit;
- }
- if($data == 'delnumber'){
-  bot('editMessageText',[
-    'chat_id'=>$chat_id,
-    'message_id'=>$message_id,
-    'text'=>'• قم بأرسال كود السلعة ، 📬',
-    'reply_markup'=>json_encode([
-     'inline_keyboard'=>[
-      [['text'=>'- الغاء 🚫!','callback_data'=>'c']]
-      ]
-    ])
-  ]);
-  $buttons['mode'] = 'del';
-  save($buttons);
-  exit;
- }
- if($text != '/start' and $text != null and $buttons['mode'] == 'del'){
-  if($buttons['sales'][$text] != null){
-   bot('sendMessage',[
-   'chat_id'=>$chat_id,
-   'text'=>'تم حذف السلعة ✅. 
-   ℹ️┇الاسم : '.$buttons['sales'][$text]['name'].'
-💵┇السعر : '.$buttons['sales'][$text]['price'].'
-⛓┇كود السلعة : '.$text
-  ]);
-  unset($buttons['sales'][$text]);
-  $buttons['mode'] = null;
-  save($buttons);
-  exit;
-  } else {
-   bot('sendMessage',[
-    'chat_id'=>$chat_id,
-    'text'=>'- الكود الذي ارسلته غير موجود 🚫!'
-   ]);
-  }
- }
-} else {
- if(preg_match('/\/(start)(.*)/', $text)){
-  $ex = explode(' ', $text);
-  if(isset($ex[1])){
-   if(!in_array($chat_id, $sales[$chat_id]['id'])){
-   if($setcoin == null){
-   file_put_contents("setcoin.txt",1);
-   }
-    $sales[$ex[1]]['collect'] += $setcoin;
-    $sales[$ex[1]]['mynum'] += 100;
-    file_put_contents("sales.json",json_encode($sales));
-    bot('sendMessage',[
-     'chat_id'=>$ex[1] ,
-     'text'=>"
-◾ دخل شخص الى رابطك الخاص .
-
-◾ ايديه : $chat_id
-
-◾ نقودك الان : ".$sales[$ex[1]]['collect']." ماركوس 💵",
-    ]);
-    $sales[$chat_id]['id'][] = $chat_id;
-    file_put_contents("sales.json",json_encode($sales));
-   }
-  }
-  $status = bot('getChatMember',['chat_id'=>'-1001317987229','user_id'=>$chat_id])->result->status;
-  if($status == 'left'){
-   bot('sendMessage',[
-       'chat_id'=>$chat_id,
-       'text'=>"
-- مرحبا بك 👋
-- للحصول ع عرضك المجاني 😎 نرجوا الاشتراك في قناة البوت اولا؛  📡
-- رابط القناة : 👈 
-https://t.me/joinchat/AAAAAE38isxYiljKu9ymBQ
-- ثم ارسل 👈 ( /start ) بعد الاشتراك 👍",
-       'reply_to_message_id'=>$message->message_id,
-         'reply_markup'=>json_encode([
-    'inline_keyboard'=>[
-     [['text'=>'◾ اشتراك .','url'=>'https://t.me/joinchat/AAAAAE38isxYiljKu9ymBQ
-    ']],
-     ]
-     ])
-   ]);
-if ($update && !in_array($chat_id, $getmember)) {
-$member = file_get_contents('members.txt');
-$getmember= explode("\n",$member);
-file_put_contents("members.txt","$chat_id\n", FILE_APPEND);
-}
-   exit();
-  }
-  if($sales[$chat_id]['collect'] == null){
-   $sales[$chat_id]['collect'] = 0;
-   file_put_contents("sales.json",json_encode($sales));
-  }
-    if($sales[$chat_id]['mynum'] == null){
-   $sales[$chat_id]['mynum'] = 0;
-   file_put_contents("sales.json",json_encode($sales));
-  }
-  if($buttons['activity'] == null){
-  $buttons['activity'] = "YES";
- }
-  if($sales[$chat_id]['mysend'] == null){
-   $sales[$chat_id]['mysend'] = "لايوجد لديك طلبات !!";
-   file_put_contents("sales.json",json_encode($sales));
-  }
-if($start == null){
-file_put_contents("start.txt","◾ اهلا بك في بوت العروض 👋
-◾ البوت يقوم بإعطائك عرض مقابل النقود 💰
-◾ قم بتجميع النقود واحصل على عرضك المناسب 🌚
-◾ هذا البوت تجريبي (قيد التطوير) سيتم اضافة طرق اخرى لجمع النقود ✅");
-}
-  bot('sendmessage',[
-   'chat_id'=>$chat_id,
-'text'=>"
-$start
-",
-'reply_markup'=>json_encode([ 
-'inline_keyboard'=>[
-[['text'=>"شراء عرض ☎️",'callback_data'=>"sales"],['text'=>"جمع النقود 💰",'callback_data'=>"col"]],
-[['text'=>"فلوسي 💵",'callback_data'=>"info"],['text'=>"طلباتي 🛎",'callback_data'=>"mysend"]],
-[['text'=>"تحويل النقود ↪",'callback_data'=>"sendcoin"],['text'=>"شراء النقود 💵",'callback_data'=>"buy"]],
-[['text'=>"شرح البوت 🎥",'callback_data'=>"about"],['text'=>"طلب النقود 💬",'callback_data'=>"getcoin"]],
-[['text'=>"مراسلة الدعم 📮",'callback_data'=>"sup"]],
-    ] 
-   ])
-  ]);
- }
-}
-  if($data == 'back'){
-  $sales['mode'] = null;
-  file_put_contents("sales.json",json_encode($sales));
-  bot('editMessageText',[
-    'chat_id'=>$chat_id,
-    'message_id'=>$message_id,
-'text'=>"
-$start
-",
-'reply_markup'=>json_encode([ 
-'inline_keyboard'=>[
-[['text'=>"شراء عرض ☎️",'callback_data'=>"sales"],['text'=>"جمع النقود 💰",'callback_data'=>"col"]],
-[['text'=>"فلوسي 💵",'callback_data'=>"info"],['text'=>"طلباتي 🛎",'callback_data'=>"mysend"]],
-[['text'=>"تحويل النقود ↪",'callback_data'=>"sendcoin"],['text'=>"شراء النقود 💵",'callback_data'=>"buy"]],
-[['text'=>"شرح البوت 🎥",'callback_data'=>"about"],['text'=>"طلب النقود 💬",'callback_data'=>"getcoin"]],
-[['text'=>"مراسلة الدعم 📮",'callback_data'=>"sup"]],
-    ] 
-   ])
-  ]);
- }
- if($data == 'sup'){
-  bot('editMessageText',[
-    'chat_id'=>$chat_id,
-    'message_id'=>$message_id,
-'text'=>"
-◾ ارسل اقتراحاتك ومشاكلك حول البوت الان .
-",
- 'reply_markup'=>json_encode([
-                   'inline_keyboard'=>[
-                                [
-                        ['text'=>"◾ العودة",'callback_data'=>"back"],
-                        ],
-                    ]
-])
-]);
-$sales['mode'] = 'sun';
-$sales['chat'] = $chat_id;
-file_put_contents("sales.json",json_encode($sales));
-}
-if($chat_id == $sales['chat']){
- if($text != '/start' and $text != null and $sales['mode'] == 'sun'){
- bot('sendmessage',[
-'chat_id'=>$chat_id,
-'text'=>"
-◾ تم ارسال رسالتك وسيتم النظر فيها .
-◾ شكرا لك !!",
- 'reply_markup'=>json_encode([
-                   'inline_keyboard'=>[
-                                [
-                        ['text'=>"◾ العودة",'callback_data'=>"back"],
-                        ],
-                    ]
-])
-]);
-bot('sendmessage',[
-'chat_id'=>$sudo,
-'text'=>"
-◾ رسالة من : `$chat_id`
-◾ الرسالة : *$text*
-",
-'parse_mode'=>"Markdown",
-]);
-}
-}
-//================//
-if($data == "getcoin"){
-bot('EditMessageText',[
-'chat_id'=>$chat_id,
-'message_id'=>$message_id,
-'text'=>"
-▪ هذا القسم تم حظره بسبب طلبات اباحية 🔰
-",
-'reply_markup'=>json_encode([ 
-'inline_keyboard'=>[
-[['text'=>"",'callback_data'=>"yess"]],
-[['text'=>"- العودة",'callback_data'=>"back"]],
-]
-])
-]);
-}
-if($data == "about"){
-bot('EditMessageText',[
-'chat_id'=>$chat_id,
-'message_id'=>$message_id,
-'text'=>"
-▪ البوت بسيط جدا ولا يحتاج للشرح 😅
-
-▪ تواصل مع مطور البوت اذا لم تفهم عمل البوت :
-@xlxlq - @Twasl9Bot
-",
-'reply_markup'=>json_encode([ 
-'inline_keyboard'=>[
-[['text'=>"- العودة 🔙",'callback_data'=>"back"]],
-]
-])
-]);
-}
-//================//
-if($data == "buy"){
-bot('EditMessageText',[
-'chat_id'=>$chat_id,
-'message_id'=>$message_id,
-'text'=>"
-▪ راسل المطور لشراء النقود ✅
-
-@xlxlq - @Twasl9Bot
-",
-'reply_markup'=>json_encode([ 
-'inline_keyboard'=>[
-[['text'=>"- العودة",'callback_data'=>"back"]],
-]
-])
-]);
-}
-//================//
- if($data == 'sendcoin'){
-  bot('editMessageText',[
-    'chat_id'=>$chat_id,
-    'message_id'=>$message_id,
-    'text'=>"
-◾ تم حظر هذا القسم بسبب تهكير بعض الاعضاء للنقاط 🙄 .",
- 'reply_markup'=>json_encode([
-                   'inline_keyboard'=>[
-                                [
-                        ['text'=>"◾ العودة",'callback_data'=>"back"],
-                        ],
-                    ]
-])
-]);
-}
-
-//================//
-if($data == "mysend"){
-bot('EditMessageText',[
-'chat_id'=>$chat_id,
-'message_id'=>$message_id,
-'text'=>"
-قائمة طلباتك :-
-
-▪ ".$sales[$chat_id]['mysend']."
-",
-'reply_markup'=>json_encode([ 
-'inline_keyboard'=>[
-[['text'=>"- العودة",'callback_data'=>"back"]],
-]
-])
-]);
-}
-//================//
-if($data == "info"){
-bot('EditMessageText',[
-'chat_id'=>$chat_id,
-'message_id'=>$message_id,
-'text'=>"
-عدد الذين دعوتهم : ".$sales[$chat_id]['mynum']."
-عدد نقودك : ".$sales[$chat_id]['collect']."
-",
-'reply_markup'=>json_encode([ 
-'inline_keyboard'=>[
-[['text'=>"- العودة",'callback_data'=>"back"]],
-]
-])
-]);
-}
-//================//
-if($data == "col"){
-if($buttons['activity'] == "YES"){
-bot('EditMessageText',[
-'chat_id'=>$chat_id,
-'message_id'=>$message_id,
-'text'=>"
-▪ يرجى اختيار طريقتك المفضلة في تجميع النقود 📋
-▪ معدل الربح من كل قسم :
-
-مشاركة الرابط == 100 ماركوس 💵
-- اختصار الروابط == 90 ماركوس 💵
-- اشتراك بقنوات == 80 ماركوس 💵
-",
-'reply_markup'=>json_encode([ 
-'inline_keyboard'=>[
-[['text'=>"مشاركة الرابط ♻",'callback_data'=>"share"],['text'=>"اشتراك بقنوات 📡",'callback_data'=>"chs"]],
-[['text'=>"- اختصار روابط 🖇",'callback_data'=>"short"]],
-]
-])
-]);
-}
-}
-if($data == "col"){
-if($buttons['activity'] == "NO"){
-bot('EditMessageText',[
-'chat_id'=>$chat_id,
-'message_id'=>$message_id,
-'text'=>"
-▪ يرجى اختيار طريقتك المفضلة في تجميع النقود 📋
-
-🤖 اختصار الروابط معطل من قبل المطور 
-",
-'reply_markup'=>json_encode([ 
-'inline_keyboard'=>[
-[['text'=>"مشاركة الرابط ♻",'callback_data'=>"share"],['text'=>"اشتراك بقنوات 📡",'callback_data'=>"chs"]],
-[['text'=>"- العودة 😺",'callback_data'=>"back"]],
-]
-])
-]);
-}
-}
-if($data == "short"){
-$code = $buttons['code1'];
-$long_url = urlencode("https://t.me/dbybot?start=lll==".$code1);
-$api_token = '7e00f4627930b8277346beaf7c28cb73f385c48a';
-$api_url = "https://donia2link.com/api?api=$api_token&url=$long_url";
-$result = json_decode(file_get_contents($api_url),TRUE);
-//=========//
-$code2 = $buttons['code2'];
-$long_url = urlencode("https://t.me/dbybot?start=llll==".$code2);
-$api_token = '7e00f4627930b8277346beaf7c28cb73f385c48a';
-$api_url = "https://donia2link.com/api?api=$api_token&url=$long_url";
-$result2 = json_decode(file_get_contents($api_url),TRUE);
-//=========//
-$code3 = $buttons['code3'];
-$long_url = urlencode("https://t.me/dbybot?start=lllll==".$code3);
-$api_token = '7e00f4627930b8277346beaf7c28cb73f385c48a';
-$api_url = "https://donia2link.com/api?api=$api_token&url=$long_url";
-$result3 = json_decode(file_get_contents($api_url),TRUE);
-//=========//
-$code4 = $buttons['code4'];
-$long_url = urlencode("https://t.me/dbybot?start=llllll==".$code4);
-$api_token = '7e00f4627930b8277346beaf7c28cb73f385c48a';
-$api_url = "https://donia2link.com/api?api=$api_token&url=$long_url";
-$result = json_decode(file_get_contents($api_url),TRUE);
-//=========//
-$code5 = $buttons['code5'];
-$long_url = urlencode("https://t.me/dbybot?start=lllllll==".$code5);
-$api_token = '7e00f4627930b8277346beaf7c28cb73f385c48a';
-$api_url = "https://donia2link.com/api?api=$api_token&url=$long_url";
-$result5 = json_decode(file_get_contents($api_url),TRUE);
-bot('EditMessageText',[
-'chat_id'=>$chat_id,
-'message_id'=>$message_id,
-'text'=>"
-▪ اليك روابطك الخاصه قم بإختصارها ✔
-
-1 - ".$result0['shortenedUrl']."
-
-2 - ".$result2['shortenedUrl']."
-
-3 - ".$result3['shortenedUrl']."
-
-4 - ".$result4['shortenedUrl']."
-
-5 - ".$result5['shortenedUrl']."
-
-▪ ستحصل على 100 نقطة بعد كل اختصار 😎💸
-▪ ستحصل على 500 نقطة بعد اختصارها جميعا 💰
-",
-'reply_markup'=>json_encode([ 
-'inline_keyboard'=>[
-[['text'=>"- شرح اختصار الرابط 🎥",'url'=>"https://t.me/qql_1"],['text'=>"",'callback_data'=>"chs"]],
-[['text'=>"- العودة",'callback_data'=>"back"]],
-]
-])
-]);
-}
-
-if(preg_match("/^\/(start) (lll)==(.*)/s",$text)){
-preg_match("/^\/(start) (lll)==(.*)/s",$text,$matchaa);
-$codematch = $matchaa[3];
-if($sales[$chat_id]['short'] == "YES1"){
-bot('sendMessage',[
-'chat_id'=>$chat_id,
-'text'=>"▪ للاسف !! سبق واختصرت رابطك 😐 وقد اخذت 90 ماركوس بعد ذلك 
-▪ انتظر الى ان يتم تبديل الرابط وحاول مجددا 🙂",
-'reply_markup'=>json_encode([ 
-'inline_keyboard'=>[
-[['text'=>"- العودة",'callback_data'=>"back"]],
-]
-])
-]);
-}
-else
-{
-  bot('sendmessage',[
-          	'chat_id'=>$chat_id,
-          'text'=>"
-▪ تم التحقق من اختصار الرابط ✅
-
-",
-'reply_markup'=>json_encode([ 
-'inline_keyboard'=>[
-[['text'=>"- العودة",'callback_data'=>"back"]],
-]
-])
-]);
-$sales[$chat_id]['collect'] += 100;
-$sales['clicker'] += 1;
-$sales[$chat_id]['short'] = "YES1";
-file_put_contents("sales.json",json_encode($sales));
-}
-}
-//========//
-if(preg_match("/^\/(start) (llll)==(.*)/s",$text)){
-preg_match("/^\/(start) (llll)==(.*)/s",$text,$matchaa);
-$codematch = $matchaa[3];
-if($sales[$chat_id]['short2'] == "YES2"){
-bot('sendMessage',[
-'chat_id'=>$chat_id,
-'text'=>"▪ للاسف !! سبق واختصرت رابطك 😐 وقد اخذت 90 ماركوس بعد ذلك 
-▪ انتظر الى ان يتم تبديل الرابط وحاول مجددا 🙂",
-'reply_markup'=>json_encode([ 
-'inline_keyboard'=>[
-[['text'=>"- العودة",'callback_data'=>"back"]],
-]
-])
-]);
-}
-else
-{
-  bot('sendmessage',[
-          	'chat_id'=>$chat_id,
-          'text'=>"
-▪ تم التحقق من اختصار الرابط ✅
-تم اعطائك 90 ماركوس  ❤️
-",
-'reply_markup'=>json_encode([ 
-'inline_keyboard'=>[
-[['text'=>"- العودة",'callback_data'=>"back"]],
-]
-])
-]);
-$sales[$chat_id]['collect'] += 100;
-$sales['clicker'] += 1;
-$sales[$chat_id]['short2'] = "YES2";
-file_put_contents("sales.json",json_encode($sales));
-}
-}
-//=========//
-if(preg_match("/^\/(start) (lllll)==(.*)/s",$text)){
-preg_match("/^\/(start) (lllll)==(.*)/s",$text,$matchaa);
-$codematch = $matchaa[3];
-if($sales[$chat_id]['short3'] == "YES3"){
-bot('sendMessage',[
-'chat_id'=>$chat_id,
-'text'=>"▪ للاسف !! سبق واختصرت رابطك 😐 وقد اخذت 90 ماركوس بعد ذلك 
-▪ انتظر الى ان يتم تبديل الرابط وحاول مجددا 🙂",
-'reply_markup'=>json_encode([ 
-'inline_keyboard'=>[
-[['text'=>"- العودة",'callback_data'=>"back"]],
-]
-])
-]);
-}
-else
-{
-  bot('sendmessage',[
-          	'chat_id'=>$chat_id,
-          'text'=>"
-▪ تم التحقق من اختصار الرابط ✅
-تم اعطائك 90 ماركوس  ❤️
-",
-'reply_markup'=>json_encode([ 
-'inline_keyboard'=>[
-[['text'=>"- العودة",'callback_data'=>"back"]],
-]
-])
-]);
-$sales[$chat_id]['collect'] += 100;
-$sales['clicker'] += 1;
-$sales[$chat_id]['short3'] = "YES3";
-file_put_contents("sales.json",json_encode($sales));
-}
-}
-//===========//
-if(preg_match("/^\/(start) (llllll)==(.*)/s",$text)){
-preg_match("/^\/(start) (llllll)==(.*)/s",$text,$matchaa);
-$codematch = $matchaa[3];
-if($sales[$chat_id]['short4'] == "YES4"){
-bot('sendMessage',[
-'chat_id'=>$chat_id,
-'text'=>"▪ للاسف !! سبق واختصرت رابطك 😐 وقد اخذت 90 ماركوس بعد ذلك 
-▪ انتظر الى ان يتم تبديل الرابط وحاول مجددا 🙂",
-'reply_markup'=>json_encode([ 
-'inline_keyboard'=>[
-[['text'=>"- العودة",'callback_data'=>"back"]],
-]
-])
-]);
-}
-else
-{
-  bot('sendmessage',[
-          	'chat_id'=>$chat_id,
-          'text'=>"
-▪ تم التحقق من اختصار الرابط ✅
-تم اعطائك 90 ماركوس  ❤️
-",
-'reply_markup'=>json_encode([ 
-'inline_keyboard'=>[
-[['text'=>"- العودة",'callback_data'=>"back"]],
-]
-])
-]);
-$sales[$chat_id]['collect'] += 100;
-$sales['clicker'] += 1;
-$sales[$chat_id]['short4'] = "YES4";
-file_put_contents("sales.json",json_encode($sales));
-}
-}
-//==========//
-if(preg_match("/^\/(start) (lll)==(.*)/s",$text)){
-preg_match("/^\/(start) (lll)==(.*)/s",$text,$matchaa);
-$codematch = $matchaa[3];
-if($sales[$chat_id]['short5'] == "YES5"){
-bot('sendMessage',[
-'chat_id'=>$chat_id,
-'text'=>"▪ للاسف !! سبق واختصرت رابطك 😐 وقد اخذت 90 ماركوس بعد ذلك 
-▪ انتظر الى ان يتم تبديل الرابط وحاول مجددا 🙂",
-'reply_markup'=>json_encode([ 
-'inline_keyboard'=>[
-[['text'=>"- العودة",'callback_data'=>"back"]],
-]
-])
-]);
-}
-else
-{
-  bot('sendmessage',[
-          	'chat_id'=>$chat_id,
-          'text'=>"
-▪ تم التحقق من اختصار الرابط ✅
-▪ تم اعطائك 90 ماركوس💵 بنجاح ❤
-",
-'reply_markup'=>json_encode([ 
-'inline_keyboard'=>[
-[['text'=>"- العودة",'callback_data'=>"back"]],
-]
-])
-]);
-$sales[$chat_id]['collect'] += 100;
-$sales['clicker'] += 1;
-$sales[$chat_id]['short5'] = "YES5";
-file_put_contents("sales.json",json_encode($sales));
-}
-}
-if($data == "share"){
-bot('EditMessageText',[
-'chat_id'=>$chat_id,
-'message_id'=>$message_id,
-'text'=>"
-◾ اضغط على زر مشاركة الرابط ثم قم بمشاركته مع اصدقائك .
-
-▪ كل شخص يقوم بالدخول ستحصل على 100 ماركوس 💵
-
-◾ بإمكانك عمل اعلان خاص برابط الدعوة الخاص بك :
-t.me/swachat?start=$chat_id
-",
- 'reply_markup'=>json_encode([
-                   'inline_keyboard'=>[
-                                [
-                        ['text'=>"🌐 مشاركة الرابط",'switch_inline_query'=>" "],
-                        ],
-[['text'=>"- العودة",'callback_data'=>"back"]],
-                        ]
-                        ])
-  ]);
- }
-if($channels == null){
-$sales[$chat_id]['steps'] = "Yes";
-file_put_contents("sales.json",json_encode($sales));
-}
-if($sales[$chat_id]['steps'] == null){
-$sales[$chat_id]['steps'] = "no";
-file_put_contents("sales.json",json_encode($sales));
-}
-if($data == "chs"){
-bot('EditMessageText',[
-'chat_id'=>$chat_id,
-'message_id'=>$message_id,
-'text'=>"
-- اشترك في القناة أحصل ع 160 ماركوس  🌝
-",
-'reply_markup'=>json_encode([ 
-'inline_keyboard'=>[
-[['text'=>"القناة الاولى 😴",'callback_data'=>"ch1"],['text'=>"القناة الثانية 😴",'callback_data'=>"ch2"]],
-[['text'=>"- العودة -",'callback_data'=>"back"]],
-]
-])
-]);
-}
-if($channel == null){
-$sales[$chat_id]['stepss'] = "Yes";
-file_put_contents("sales.json",json_encode($sales));
-}
-if($sales[$chat_id]['stepss'] == null){
-$sales[$chat_id]['stepss'] = "no";
-file_put_contents("sales.json",json_encode($sales));
-}
-if($data == "ch2"){
-if($sales[$chat_id]['stepss'] == "Yes"){
-bot('EditMessageText',[
-'chat_id'=>$chat_id,
-'message_id'=>$message_id,
-'text'=>"
-▪ لايوجد قناة تمت اضافتها هنا 😴
-▪ يرجى المحاولة مره اخرى لاحقا 😎
-",
-'reply_markup'=>json_encode([ 
-'inline_keyboard'=>[
-[['text'=>"- العودة",'callback_data'=>"back"]],
-]
-])
-]);
-}
-else
-{
-bot('EditMessageText',[
-'chat_id'=>$chat_id,
-'message_id'=>$message_id,
-'text'=>"
-▪ اشترك في هذه القناة : $channel
-واحصل ع 80 ماركوس 
-",
-'reply_markup'=>json_encode([ 
-'inline_keyboard'=>[
-[['text'=>"- اشتركت ✅",'callback_data'=>"yesss"]],
-]
-])
-]);
-}
-}
-if($data == "ch1"){
-if($sales[$chat_id]['steps'] == "Yes"){
-bot('EditMessageText',[
-'chat_id'=>$chat_id,
-'message_id'=>$message_id,
-'text'=>"
-▪ لايوجد قناة تمت اضافتها هنا 😴
-▪ يرجى المحاولة مره اخرى لاحقا 😎
-",
-'reply_markup'=>json_encode([ 
-'inline_keyboard'=>[
-[['text'=>"- العودة",'callback_data'=>"back"]],
-]
-])
-]);
-}
-else
-{
-bot('EditMessageText',[
-'chat_id'=>$chat_id,
-'message_id'=>$message_id,
-'text'=>"
-▪ اشترك في هذه القناة : $channels
-🔆 حصلت على 80 ماركوس 💵",
-'reply_markup'=>json_encode([ 
-'inline_keyboard'=>[
-[['text'=>"- اشتركت ✅",'callback_data'=>"yess"]],
-]
-])
-]);
-}
-}
-if($data == "yess"){
-$chuser = file_get_contents("https://api.telegram.org/bot".API_KEY."/getChatMember?chat_id=$channels&user_id=".$chat_id);
-if((strpos($chuser,'"status":"left"') or strpos($chuser,'"Bad Request: USER_ID_INVALID"') or strpos($chuser,'"status":"kicked"')) !== false){
-	 bot('answercallbackquery',[
-      'callback_query_id' => $update->callback_query->id,
-      'text'=>'- اشترك في القناة اولا 🔰',
-      'show_alert'=>true,
- ]);
-}else{
-bot('EditMessageText',[
-'chat_id'=>$chat_id,
-'message_id'=>$message_id,
-'text'=>"
-✅ تم التحقق من انظمامك للقناة ✅
-🔆 حصلت على 80 ماركوس 💵",
-'reply_markup'=>json_encode([ 
-'inline_keyboard'=>[
-[['text'=>"- العودة",'callback_data'=>"back"]],
-]
-])
-]);
-$sales[$chat_id]['collect'] += 80;
-$sales[$chat_id]['steps'] = "Yes";
-file_put_contents("sales.json",json_encode($sales));
-}
-}
-if($data == "yesss"){
-$chuser = file_get_contents("https://api.telegram.org/bot".API_KEY."/getChatMember?chat_id=$channel&user_id=".$chat_id);
-if((strpos($chuser,'"status":"left"') or strpos($chuser,'"Bad Request: USER_ID_INVALID"') or strpos($chuser,'"status":"kicked"')) !== false){
-	 bot('answercallbackquery',[
-      'callback_query_id' => $update->callback_query->id,
-      'text'=>'- اشترك في القناة اولا 🔰',
-      'show_alert'=>true,
- ]);
-}else{
-bot('EditMessageText',[
-'chat_id'=>$chat_id,
-'message_id'=>$message_id,
-'text'=>"
-✅ تم التحقق من انظمامك للقناة ✅
-🔆 حصلت على 80 ماركوس 💵",
-'reply_markup'=>json_encode([ 
-'inline_keyboard'=>[
-[['text'=>"- العودة",'callback_data'=>"back"]],
-]
-])
-]);
-$sales[$chat_id]['collect'] += 80;
-$sales[$chat_id]['stepss'] = "Yes";
-file_put_contents("sales.json",json_encode($sales));
-}
-}
-//================//
-//================//
-if($rules == null){
-file_put_contents("rules.txt","NO");
-}
-if($rule == null){
-file_put_contents("rule.txt","▪ اقرأ هذا اولا :
-▪ اقرأ هذا اولا :
-▪ حسنا صديقي !! جميع العروض الموجودة في الاسفل حقيقية وبكميات محدودة .
-▪ وجميعها ايضا محددة بالنقود لكي تحصل عليها يجب تجميع هذه النقود 🔰
-◾لاتقلق اذا لايوجد لديك معرف فسوف نقوم بإيصال العرض اليك عبر الايدي الخاص بك ✅
-
-▪ اضغط على التالي لعرض العروض ✅");
-}
-if($data == "sales"){
-if($rules == "NO"){
-file_put_contents("set.txt","null");
-bot('EditMessageText',[
-'chat_id'=>$chat_id,
-'message_id'=>$message_id,
-'text'=>"
-$rule
-",
-'reply_markup'=>json_encode([ 
-'inline_keyboard'=>[
-[['text'=>"- التالي ➡",'callback_data'=>"next"]],
-[['text'=>"- العودة",'callback_data'=>"back"]],
-]
-])
-]);
-file_put_contents("rules.txt","YES");
-}
-else{
-$reply_markup = [];
-  $reply_markup['inline_keyboard'][] = [['text'=>'🔰 السعر 💰','callback_data'=>'s'],['text'=>'📞 العروض 🔰','callback_data'=>'s']];
-  foreach($buttons['sales'] as $code => $buttonss){
-   $reply_markup['inline_keyboard'][] = $reply_markup[] =[['text'=>"".$buttonss['price']."ماركوس 💵",'callback_data'=>$code],['text'=>$buttonss['name'],'callback_data'=>$code]];
-  }
-  $reply_markup['inline_keyboard'][] = [['text'=>'العودة','callback_data'=>'back']];
-  $reply_markup = json_encode($reply_markup);
-bot('EditMessageText',[
-'chat_id'=>$chat_id,
-'message_id'=>$message_id,
-'text'=>"
-▪ اربح الكثير من العروض  🔰
-▪ البوت مربوط ع موقع عالمي  🔰
-▪ اذا كنت تريد جائزة تليجرام 
- قم بجمع نص النقود الموضوعه عند العروض ثم قم بتصويرها للمطور 🔰
-
-▪ نقودك : ".$sales[$chat_id]['collect']." ماركوس 💰
-▪ قائمة العروض المتوفرة لدينا 🔰??
-",
-'reply_markup'=>($reply_markup)
-  ]);
-  }
- }
-if($data == "next"){
-$reply_markup = [];
-  $reply_markup['inline_keyboard'][] = [['text'=>'🔰 السعر 💰','callback_data'=>'s'],['text'=>'نوع العرض ☎️🔰','callback_data'=>'s']];
-  foreach($buttons['sales'] as $code => $buttonss){
-   $reply_markup['inline_keyboard'][] = $reply_markup[] =[['text'=>"".$buttonss['price']."ماركوس 💰",'callback_data'=>$code],['text'=>$buttonss['name'],'callback_data'=>$code]];
-  }
-  $reply_markup['inline_keyboard'][] = [['text'=>'🔙 العودة 🔜','callback_data'=>'back']];
-  $reply_markup = json_encode($reply_markup);
-bot('EditMessageText',[
-'chat_id'=>$chat_id,
-'message_id'=>$message_id,
-'text'=>"
-قائمة العروض المتوفرة لدينا 📮
-",
-'reply_markup'=>($reply_markup)
-  ]);
-  }
-//=============//
-# *?????* #
-elseif(strpos($text, "حظر ") !== false){
-$nambtn = str_replace("حظر ",$text);
-file_put_contents("banslist.txt","$nambtn\n", FILE_APPEND);
-bot('sendMessage',[
-'chat_id'=>$chat_id,
-'text'=>'تم حظره بنجاح .',
-]);
-bot('sendMessage',[
-'chat_id'=>$nambtn,
-'text'=>'▪ تم حظرك بنجاح .',
-]);
-}
-elseif(strpos($text, "الغاء حظر ") !== false ){
-$replyy = str_replace("الغاء حظر ",$text);
-$strr = str_replace($replyy."\n", "" ,$bans);
-file_put_contents("banslist.txt",$strr);
-bot('sendMessage',[
-'chat_id'=>$sudo,
-'text'=>'تم الغاء حظره بنجاح .',
-]);
-bot('sendMessage',[
-'chat_id'=>$replyy,
-'text'=>'تم الغاء حظرك بنجاح .'
-]);
-}
-if($bans == "" or $bans == null){
-file_put_contents("banslist.txt","");
-}
-if($data == "showbans"){
-$count = count($banlist)-1;
-bot('EditMessageText',[
-'chat_id'=>$chat_id,
-'message_id'=>$message_id,
-'text'=>"
-المحظورين : *$count*
-
-*$bans*
-",
-'parse_mode'=>"markdown",
-'disable_web_page_preview'=>true,
-'reply_to_message_id'=>$message->message_id,
-'reply_markup'=>json_encode([ 
-'inline_keyboard'=>[
-[['text'=>"- ?????? ??",'callback_data'=>"all"]],
-]
-])
-]);
-}
-if($data == "delbans"){
-bot('EditMessageText',[
-'chat_id'=>$chat_id,
-'message_id'=>$message_id,
-'text'=>"
-تم بنجاح .
-",
-'parse_mode'=>"markdown",
-'disable_web_page_preview'=>true,
-'reply_to_message_id'=>$message->message_id,
-'reply_markup'=>json_encode([ 
-'inline_keyboard'=>[
-[['text'=>"- ?????? ??",'callback_data'=>"all"]],
-]
-])
-]);
-file_put_contents("banslist.txt","");
-}
-# *????? ????? ????????* #
-//===============//
-if($data == 'yes'){
-  $price = $buttons['sales'][$buttons[$chat_id]['mode']]['price'];
-  $name = $buttons['sales'][$buttons[$chat_id]['mode']]['name'];
-  bot('editMessageText',[
-   'chat_id'=>$chat_id,
-   'message_id'=>$message_id,
-   'text'=>"
-▪تم شراء العرض بنجاح ☎💰✅
-▪ في خلال 48 ساعة بالكثير سيتم تسليم عرضك 😼👍
-
-▪ اذا حدث وماستلمت طلبك تواصل معنا :
-@xlxlq - @Twasl9Bot
-▪ يرجى التواصل معنا اذا لم تستلم طلبك في غضون 48 ساعه 😐
-",
-  ]);
-  bot('sendmessage',[
-   'chat_id'=>$sudo,
-   'text'=>"[$namee](tg://user?id=$chat_id) \n - قام بشراء $name بسعر $price ، 🧨
-
- عدد من دعاهم : ".$sales[$chat_id]['mynum']."
-عدد النقوده : ".$sales[$chat_id]['collect']."
-▪ طلباته ".$sales[$chat_id]['mysend']."
-",
-   'parse_mode'=>"Markdown",
-  ]);
-  $buttons[$chat_id]['mode'] = null;
-  $sales[$chat_id]['collect'] -= $price;
-  $buttons[$chat_id]['mysend'] = "$name بـ $price ماركوس ✅";
-  file_put_contents("sales.json",json_encode($sales));
-  save($buttons);
-  exit;
- } else {
-if($data == 's') { exit; }
-$price = $buttons['sales'][$data]['price'];
-$name = $buttons['sales'][$data]['name'];
-if($price != null){
-if($price <= $sales[$chat_id]['collect']){
-bot('editMessageText',[
-      'chat_id'=>$chat_id,
-      'message_id'=>$message_id,
-      'text'=>"- هل انت متأكد من شراء ( $name ) بقيمة ( $price ) ?!",
-      'reply_markup'=>json_encode([
-       'inline_keyboard'=>[
-        [['text'=>'- نعم 🔰','callback_data'=>'yes'],['text'=>'- لا 🚫','callback_data'=>'sales']] 
-       ] 
-      ])
-     ]);
-     $buttons[$chat_id]['mode'] = $data;
-     save($buttons);
-     exit;
-    } else {
-     bot('answercallbackquery',[
-      'callback_query_id' => $update->callback_query->id,
-      'text'=>"- نقودك ليست كافية لشراء هذا العرض 🚫 📋
-- نقودك الان : ".$sales[$chat_id]['collect']." ماركوس 💵",
-      'show_alert'=>true,
-     ]);
-    }
-   }
-}
-$from_idin = $update->inline_query->from->id;
-$usernameinl = $update->inline_query->from->username;
-if($update->inline_query){
-$inlineqt = $update->inline_query->query;
-if($inlineqt == ''){
-bot('answerInlineQuery', [
-'inline_query_id' => $update->inline_query->id,
-'results' => json_encode([[
-'type' => 'article',
-'id' => base64_encode(rand(5, 555)),
-'title' => '◾ شارك رابطك الخاص لتحصل على النقود .',
-'description' => 'اضغط هنا لمشاركة رابطك 😉',
-'input_message_content' => ['parse_mode' => 'MarkDown', 'disable_web_page_preview'=> true, 'message_text' => "
-- احصل على عرض ☎ في اكثر من 500 عرض  مجانا 😻💯 عبر هذا البوت 👇"],
-'reply_markup' => [
-'inline_keyboard' => [
-[['text' => "- دخول للبوت 😻💯", 'url' => "http://t.me/swachat?start=$from_idin"]],
-]]
-]])
-]);
-}else {
-bot('answerInlineQuery', [
-'inline_query_id' => $update->inline_query->id,
-'results' => json_encode([[
-'type' => 'article',
-'id' => base64_encode(rand(5, 555)),
-'title' => '◾ شارك رابطك الخاص لتحصل على النقود .',
-'description' => 'اضغط هنا لمشاركة رابطك 😉',
-'input_message_content' => ['parse_mode' => 'MarkDown', 'disable_web_page_preview'=> true, 'message_text' => "
-- احصل على عرض ☎ في اكثر من 500 عرض  مجانا 😻💯 عبر هذا البوت 👇"],
-'reply_markup' => [
-'inline_keyboard' => [
-[['text' => "- دخول للبوت 😻💯", 'url' => "http://t.me/swachat?start=$from_idin"]],
-]]
-],[
-'type' => 'article',
-'id' => base64_encode(rand(5, 555)),
-'title' => '◾ شارك رابطك الخاص لتحصل على النقود .',
-'description' => 'اضغط هنا لمشاركة رابطك 😉',
-'input_message_content' => ['parse_mode' => 'MarkDown', 'disable_web_page_preview'=> true, 'message_text' => "
-- احصل على عرض ☎ في اكثر من 500 عرض  مجانا 😻💯 عبر هذا البوت 👇"],
-'reply_markup' => [
-'inline_keyboard' => [
-[['text' => "- دخول للبوت 😻💯", 'url' => "http://t.me/swachat?start=$from_idin"]],
-]]
-]])
-]);
-}
-}else {
-if($inlineqt == ''){
-bot('answerInlineQuery', [
-'inline_query_id' => $update->inline_query->id,
-'results' => json_encode([[
-'type' => 'article',
-'id' => base64_encode(rand(5, 555)),
-'title' => '◾ شارك رابطك الخاص لتحصل على النقود .',
-'description' => 'اضغط هنا لمشاركة رابطك 😉',
-'input_message_content' => ['parse_mode' => 'MarkDown', 'disable_web_page_preview'=> true, 'message_text' => "
-- احصل على عرض ☎ في اكثر من 500 عرض  مجانا 😻💯 عبر هذا البوت 👇"],
-'reply_markup' => [
-'inline_keyboard' => [
-[['text' => "- دخول للبوت 😻💯", 'url' => "http://t.me/swachat?start=$from_idin"]],
-]]
-]])
-]);
-}else {
-    bot('answerInlineQuery', [
-'inline_query_id' => $update->inline_query->id,
-'results' => json_encode([[
-'type' => 'article',
-'id' => base64_encode(rand(5, 555)),
-'title' => '◾ شارك رابطك الخاص لتحصل على النقود .',
-'description' => 'اضغط هنا لمشاركة رابطك 😉',
-'input_message_content' => ['parse_mode' => 'MarkDown', 'disable_web_page_preview'=> true, 'message_text' => "
-- احصل على عرض ☎ في اكثر من 500 عرض  مجانا 😻💯 عبر هذا البوت 👇"],
-'reply_markup' => [
-'inline_keyboard' => [
-[['text' => "- دخول للبوت 😻💯", 'url' => "http://t.me/swachat?start=$from_idin"]],
-]]
-],[
-'type' => 'article',
-'id' => base64_encode(rand(5, 555)),
-'title' => '◾ شارك رابطك الخاص لتحصل على النقود .',
-'description' => 'اضغط هنا لمشاركة رابطك 😉',
-'input_message_content' => ['parse_mode' => 'MarkDown', 'disable_web_page_preview'=> true, 'message_text' => "
-- احصل على عرض ☎ في اكثر من 500 عرض  مجانا 😻💯 عبر هذا البوت 👇"],
-'reply_markup' => [
-'inline_keyboard' => [
-[['text' => "- دخول للبوت 😻💯", 'url' => "http://t.me/swachat?start=$from_idin"]],
-]]
-]])
-]);
-}
-}
-//===============//
